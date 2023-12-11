@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+    <!-- SQL to get all boards -->
+    <select id="getBoardList" resultType="board">
+        SELECT * FROM DIARY ORDER BY seq DESC
+    </select>
+
+    <!-- SQL to get a single board by id -->
+    <select id="getBoard" resultType="board">
+        SELECT * FROM DIARY WHERE seq = #{id}
+    </select>
+
+    <!-- SQL to insert a board -->
+    <insert id="insertBoard">
+        INSERT INTO DIARY
+        (title, writer, content, weather, mood, rating)
+        VALUES
+            (#{title}, #{writer}, #{content}, #{weather}, #{mood}, #{rating})
+    </insert>
+
+    <!-- SQL to update a board -->
+    <update id="updateBoard">
+        UPDATE DIARY SET
+                         title=#{title}, writer=#{writer}, content=#{content},
+                         weather=#{weather}, mood=#{mood}, rating=#{rating}
+        WHERE seq=#{seq}
+    </update>
+
+    <!-- SQL to delete a board -->
+    <delete id="deleteBoard">
+        DELETE FROM DIARY WHERE seq = #{seq}
+    </delete>
+
+</mapper>
